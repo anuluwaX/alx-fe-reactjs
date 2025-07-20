@@ -20,8 +20,8 @@ function App() {
       <Header />
       <MainContent />
       <UserProfile
-        name="Isabela"
-        age="23"
+        name="Alice"
+        age="25"
         bio="Loves hiking and photography"
       />
       <Footer />
