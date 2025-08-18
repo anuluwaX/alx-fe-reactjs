@@ -1,13 +1,10 @@
 import React from "react";
-import SearchBar from "./components/SearchBar";
-import UserCard from "./components/UserCard";
+import Hello from "./components/Hello";
 
 function App() {
   return (
     <div>
-      <h1>GitHub User Search App</h1>
-      <SearchBar />
-      <UserCard />
+      <Hello />
     </div>
   );
 }
