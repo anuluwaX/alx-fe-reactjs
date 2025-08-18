@@ -13,7 +13,7 @@ function Search() {
     setUser(null);
 
     try {
-      const response = await fetch(`https://api.github.com/users/${query}`);
+      const response = await fetch(`https://api.github.com/users/${username}`);
       if (!response.ok) {
         throw new Error("User not found");
       }
