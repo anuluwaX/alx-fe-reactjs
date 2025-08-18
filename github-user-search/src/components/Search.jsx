@@ -1,31 +1,31 @@
 import { useState } from "react";
-import { fetchUserData } from "../services/githubService";
+import { getUser } from "../services/githubService";
 
 export default function Search() {
   const [username, setUsername] = useState("");
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [userData, setUserData] = useState(null);
   const [error, setError] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
-    setUser(null);
+    setError(""); 
+    setUserData(null);
 
     try {
-      const data = await fetchUserData(username);
-      setUser(data);
+      const data = await getUser(username);
+      if (data.message === "Not Found") {
+        setError("Looks like we can't find the user");
+      } else {
+        setUserData(data);
+      }
     } catch (err) {
-      setError("Looks like we can't find the user");
-    } finally {
-      setLoading(false);
+      setError("Something went wrong. Please try again.");
     }
   };
 
   return (
-    <div className="search-container">
-      <form onSubmit={handleSubmit}>
+    <div>
+      <form onSubmit={handleSearch}>
         <input
           type="text"
           value={username}
@@ -35,19 +35,15 @@ export default function Search() {
         <button type="submit">Search</button>
       </form>
 
-      <div className="results">
-        {loading && <p>Loading...</p>}
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        {user && (
-          <div>
-            <img src={user.avatar_url} alt={user.login} width="100" />
-            <h3>{user.name || user.login}</h3>
-            <a href={user.html_url} target="_blank" rel="noreferrer">
-              Visit Profile
-            </a>
-          </div>
-        )}
-      </div>
+      {error && <p>{error}</p>}
+
+      {userData && (
+        <div>
+          <h2>{userData.name}</h2>
+          <p>@{userData.login}</p>
+          <img src={userData.avatar_url} alt={userData.login} width={100} />
+        </div>
+      )}
     </div>
   );
 }
