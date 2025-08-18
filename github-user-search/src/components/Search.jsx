@@ -7,7 +7,9 @@ function Search() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const handleSearch = async () => {
+  const handleSearch = async (e) => {
+    e.preventDefault(); // prevent page reload
+
     if (!username) return;
 
     setLoading(true);
@@ -26,17 +28,19 @@ function Search() {
 
   return (
     <div>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Enter GitHub username"
-      />
-      <button onClick={handleSearch}>Search</button>
+      <form onSubmit={handleSearch}>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Enter GitHub username"
+        />
+        <button type="submit">Search</button>
+      </form>
 
       {/* Conditional rendering */}
       {loading && <p>Loading...</p>}
-      {error && <p>Looks like we cant find the user</p>}
+      {error && <p>Looks like we can't find the user</p>}
       {userData && (
         <div>
           <img
