@@ -8,8 +8,7 @@ function Search() {
   const [error, setError] = useState(false);
 
   const handleSearch = async (e) => {
-    e.preventDefault(); // prevent page reload
-
+    e.preventDefault();
     if (!username) return;
 
     setLoading(true);
@@ -38,7 +37,6 @@ function Search() {
         <button type="submit">Search</button>
       </form>
 
-      {/* Conditional rendering */}
       {loading && <p>Loading...</p>}
       {error && <p>Looks like we can't find the user</p>}
       {userData && (
