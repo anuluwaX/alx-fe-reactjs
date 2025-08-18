@@ -1,10 +1,10 @@
-import React from "react";
-import Hello from "./components/Hello";
+import Search from "./components/Search";
 
 function App() {
   return (
-    <div>
-      <Hello />
+    <div className="App">
+      <h1>GitHub User Search</h1>
+      <Search />
     </div>
   );
 }
