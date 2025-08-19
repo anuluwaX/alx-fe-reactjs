@@ -1,10 +1,12 @@
+// src/services/githubService.js
 import axios from "axios";
 
 const BASE_URL = "https://api.github.com";
 
-// Add this line just to satisfy the checker
-const CHECK_URL = "https://api.github.com/search/users?q";
+// Read token from environment variable
+const token = process.env.REACT_APP_GITHUB_TOKEN;
 
+// Function to search users with optional location and minimum repos
 export const searchUsers = async (query, location, minRepos, page = 1) => {
   let q = query ? `${query}` : "";
 
@@ -13,11 +15,10 @@ export const searchUsers = async (query, location, minRepos, page = 1) => {
 
   const response = await axios.get(`${BASE_URL}/search/users`, {
     params: { q, page, per_page: 10 },
+    headers: {
+      Authorization: token ? `token ${token}` : undefined,
+    },
   });
 
   return response.data;
 };
-
-// Add this wrapper for compatibility with checker
-export const fetchUserData = (query, location, minRepos, page) =>
-  searchUsers(query, location, minRepos, page);
