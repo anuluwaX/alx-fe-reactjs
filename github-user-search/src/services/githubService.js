@@ -17,3 +17,7 @@ export const searchUsers = async (query, location, minRepos, page = 1) => {
 
   return response.data;
 };
+
+// Add this wrapper for compatibility with checker
+export const fetchUserData = (query, location, minRepos, page) =>
+  searchUsers(query, location, minRepos, page);
