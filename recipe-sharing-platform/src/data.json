@@ -1,20 +1,11 @@
-[
-  {
-    "id": 1,
-    "title": "Spaghetti Carbonara",
-    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/300x200"
-  },
-  {
-    "id": 2,
-    "title": "Chicken Tikka Masala",
-    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato-based gravy.",
-    "image": "https://via.placeholder.com/300x200"
-  },
-  {
-    "id": 3,
-    "title": "Avocado Toast",
-    "summary": "Toasted bread topped with mashed avocado, salt, pepper, and lime juice.",
-    "image": "https://via.placeholder.com/300x200"
-  }
-]
+{
+  "recipes": [
+    {
+      "id": 1,
+      "title": "Spaghetti Bolognese",
+      "image": "/images/spaghetti.jpg",
+      "ingredients": ["200g spaghetti", "100g minced beef", "1 onion", "Tomato sauce"],
+      "instructions": ["Boil spaghetti", "Cook minced beef", "Add onion & sauce", "Serve hot"]
+    }
+  ]
+}
