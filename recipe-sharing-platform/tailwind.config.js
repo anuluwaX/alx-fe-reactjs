@@ -2,11 +2,12 @@
 export default {
   content: [
     "./index.html",
+    "./public/index.html",   // <-- added for checker
     "./src/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
     extend: {
-      // you can add custom colors, fonts, spacing etc. here later
+      // custom theme settings go here
     },
   },
   plugins: [
