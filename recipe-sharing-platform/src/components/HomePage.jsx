@@ -1,45 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
-const HomePage = () => {
-  const [recipes, setRecipes] = useState([]);
+const recipes = [
+  { id: 1, title: "Spaghetti Bolognese", description: "Classic Italian pasta." },
+  { id: 2, title: "Chicken Curry", description: "Spicy and creamy curry." },
+  { id: 3, title: "Fried Rice", description: "Quick and tasty rice dish." }
+];
 
-  useEffect(() => {
-    fetch("/src/data.json") // load mock data
-      .then((res) => res.json())
-      .then((data) => setRecipes(data))
-      .catch((err) => console.error("Error loading recipes:", err));
-  }, []);
-
+export default function HomePage() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-center mb-8">Recipe Sharing Platform</h1>
-      
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {recipes.map((recipe) => (
-          <div
-            key={recipe.id}
-            className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden"
-          >
-            <img
-              src={recipe.image}
-              alt={recipe.title}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-4">
-              <h2 className="text-xl font-semibold mb-2">{recipe.title}</h2>
-              <p className="text-gray-600">{recipe.summary}</p>
-              <a
-                href={`/recipe/${recipe.id}`}
-                className="text-blue-600 hover:underline mt-2 block"
-              >
-                View Recipe →
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+    <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+      {recipes.map((recipe) => (
+        <Link 
+          key={recipe.id} 
+          to={`/recipe/${recipe.id}`} 
+          className="block bg-white p-6 rounded-2xl shadow hover:shadow-lg transition"
+        >
+          <h2 className="text-xl font-bold mb-2">{recipe.title}</h2>
+          <p className="text-gray-600">{recipe.description}</p>
+        </Link>
+      ))}
     </div>
   );
-};
-
-export default HomePage;
+}

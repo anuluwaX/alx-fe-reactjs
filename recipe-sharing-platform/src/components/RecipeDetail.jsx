@@ -1,46 +1,25 @@
-import { useParams, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import data from "../data.json";
+import React from "react";
+import { useParams } from "react-router-dom";
+
+const recipes = [
+  { id: 1, title: "Spaghetti Bolognese", description: "Classic Italian pasta with rich sauce." },
+  { id: 2, title: "Chicken Curry", description: "Spicy, creamy, and delicious curry." },
+  { id: 3, title: "Fried Rice", description: "Quick stir-fried rice with veggies." }
+];
 
 export default function RecipeDetail() {
   const { id } = useParams();
-  const [recipe, setRecipe] = useState(null);
-
-  useEffect(() => {
-    const selectedRecipe = data.recipes.find((r) => r.id === parseInt(id));
-    setRecipe(selectedRecipe);
-  }, [id]);
+  const recipe = recipes.find((r) => r.id === Number(id));
 
   if (!recipe) {
-    return <p className="text-center text-gray-500">Loading recipe...</p>;
+    return <h2 className="p-6 text-red-500">Recipe not found</h2>;
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      <Link to="/" className="text-blue-600 hover:underline">&larr; Back</Link>
-      
-      <h1 className="text-3xl font-bold mb-4">{recipe.title}</h1>
-      <img src={recipe.image} alt={recipe.title} className="rounded-2xl shadow mb-6" />
-
-      {/* Ingredients */}
-      <div className="mb-6">
-        <h2 className="text-2xl font-semibold mb-2">Ingredients</h2>
-        <ul className="list-disc list-inside space-y-1">
-          {recipe.ingredients.map((ing, index) => (
-            <li key={index} className="text-gray-700">{ing}</li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Instructions */}
-      <div>
-        <h2 className="text-2xl font-semibold mb-2">Instructions</h2>
-        <ol className="list-decimal list-inside space-y-2">
-          {recipe.instructions.map((step, index) => (
-            <li key={index} className="text-gray-700">{step}</li>
-          ))}
-        </ol>
-      </div>
+    <div className="p-6 max-w-xl mx-auto bg-white shadow rounded-2xl">
+      <h1 className="text-2xl font-bold mb-4">{recipe.title}</h1>
+      <p className="text-gray-700">{recipe.description}</p>
     </div>
   );
 }
+
