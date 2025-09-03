@@ -1,11 +1,16 @@
-{
-  "recipes": [
-    {
-      "id": 1,
-      "title": "Spaghetti Bolognese",
-      "image": "/images/spaghetti.jpg",
-      "ingredients": ["200g spaghetti", "100g minced beef", "1 onion", "Tomato sauce"],
-      "instructions": ["Boil spaghetti", "Cook minced beef", "Add onion & sauce", "Serve hot"]
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "title": "Spaghetti Bolognese",
+    "image": "/images/spaghetti.jpg",
+    "ingredients": ["200g spaghetti", "100g minced beef", "Tomato sauce", "Onion", "Garlic"],
+    "instructions": "Cook spaghetti. Fry beef with onion and garlic. Add tomato sauce. Mix and serve."
+  },
+  {
+    "id": 2,
+    "title": "Chicken Curry",
+    "image": "/images/chicken-curry.jpg",
+    "ingredients": ["Chicken", "Curry powder", "Coconut milk", "Onion", "Garlic"],
+    "instructions": "Cook chicken. Add curry powder and onion. Pour coconut milk. Simmer until done."
+  }
+]
