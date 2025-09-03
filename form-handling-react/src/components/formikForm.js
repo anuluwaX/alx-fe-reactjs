@@ -1,8 +1,6 @@
-import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-// Validation schema with Yup
 const validationSchema = Yup.object({
   username: Yup.string().required("Username is required"),
   email: Yup.string().email("Invalid email format").required("Email is required"),
@@ -11,78 +9,65 @@ const validationSchema = Yup.object({
 
 export default function FormikForm() {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
-        <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
+    <Formik
+      initialValues={{ username: "", email: "", password: "" }}
+      validationSchema={validationSchema}
+      onSubmit={(values) => {
+        console.log("Submitting with Formik:", values);
+      }}
+    >
+      {() => (
+        <Form className="max-w-md mx-auto p-6 bg-white shadow-lg rounded-xl space-y-4">
+          <div>
+            <label className="block font-semibold">Username</label>
+            <Field
+              type="text"
+              name="username"
+              className="w-full p-2 border rounded-md"
+            />
+            <ErrorMessage
+              name="username"
+              component="p"
+              className="text-red-500 text-sm"
+            />
+          </div>
 
-        <Formik
-          initialValues={{ username: "", email: "", password: "" }}
-          validationSchema={validationSchema}
-          onSubmit={(values, { resetForm }) => {
-            console.log("Form Data:", values);
-            alert("Registration successful!");
-            resetForm();
-          }}
-        >
-          {({ isSubmitting }) => (
-            <Form className="space-y-4">
-              {/* Username */}
-              <div>
-                <label className="block text-gray-700">Username</label>
-                <Field
-                  type="text"
-                  name="username"
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                />
-                <ErrorMessage
-                  name="username"
-                  component="div"
-                  className="text-red-500 text-sm mt-1"
-                />
-              </div>
+          <div>
+            <label className="block font-semibold">Email</label>
+            <Field
+              type="email"
+              name="email"
+              className="w-full p-2 border rounded-md"
+            />
+            <ErrorMessage
+              name="email"
+              component="p"
+              className="text-red-500 text-sm"
+            />
+          </div>
 
-              {/* Email */}
-              <div>
-                <label className="block text-gray-700">Email</label>
-                <Field
-                  type="email"
-                  name="email"
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                />
-                <ErrorMessage
-                  name="email"
-                  component="div"
-                  className="text-red-500 text-sm mt-1"
-                />
-              </div>
+          <div>
+            <label className="block font-semibold">Password</label>
+            <Field
+              type="password"
+              name="password"
+              className="w-full p-2 border rounded-md"
+            />
+            <ErrorMessage
+              name="password"
+              component="p"
+              className="text-red-500 text-sm"
+            />
+          </div>
 
-              {/* Password */}
-              <div>
-                <label className="block text-gray-700">Password</label>
-                <Field
-                  type="password"
-                  name="password"
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="text-red-500 text-sm mt-1"
-                />
-              </div>
-
-              {/* Submit */}
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
-              >
-                {isSubmitting ? "Submitting..." : "Register"}
-              </button>
-            </Form>
-          )}
-        </Formik>
-      </div>
-    </div>
+          <button
+            type="submit"
+            className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700"
+          >
+            Register
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
 }

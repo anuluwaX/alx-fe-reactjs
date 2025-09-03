@@ -1,22 +1,7 @@
-import React from "react";
-import RegistrationForm from "./components/RegistrationForm";
-import FormikForm from "./components/formikForm";
-
-function App() {
+export default function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <RegistrationForm />
+    <div className="min-h-screen flex items-center justify-center bg-blue-500 text-white text-3xl font-bold">
+      Tailwind is working! 🎉
     </div>
   );
 }
-
-function App() {
-  return (
-    <div>
-      <FormikForm />
-    </div>
-  );
-}
-
-
-export default App;
