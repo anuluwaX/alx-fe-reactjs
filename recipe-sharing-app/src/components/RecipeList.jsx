@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import useRecipeStore from "./recipeStore";
 
 const RecipeList = () => {
@@ -11,10 +12,11 @@ const RecipeList = () => {
         <p className="text-gray-500">No recipes yet. Add one above!</p>
       ) : (
         <ul className="list-disc pl-5">
-          {recipes.map((recipe, index) => (
-            <li key={index} className="mb-2">
-              <strong>{recipe.title}</strong>
-              <p className="text-sm text-gray-700">{recipe.description}</p>
+          {recipes.map((recipe) => (
+            <li key={recipe.id} className="mb-2">
+              <Link to={`/recipes/${recipe.id}`} className="text-blue-600">
+                {recipe.title}
+              </Link>
             </li>
           ))}
         </ul>

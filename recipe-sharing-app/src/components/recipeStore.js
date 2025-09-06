@@ -1,16 +1,25 @@
 import { create } from "zustand";
 
-// Zustand store for managing recipes
 const useRecipeStore = create((set) => ({
   recipes: [],
 
-  // Explicit setter for replacing the recipe list
   setRecipes: (newRecipes) => set({ recipes: newRecipes }),
 
-  // Add a single recipe
   addRecipe: (recipe) =>
     set((state) => ({
-      recipes: [...state.recipes, recipe],
+      recipes: [...state.recipes, { ...recipe, id: Date.now() }],
+    })),
+
+  updateRecipe: (id, updatedRecipe) =>
+    set((state) => ({
+      recipes: state.recipes.map((recipe) =>
+        recipe.id === id ? { ...recipe, ...updatedRecipe } : recipe
+      ),
+    })),
+
+  deleteRecipe: (id) =>
+    set((state) => ({
+      recipes: state.recipes.filter((recipe) => recipe.id !== id),
     })),
 }));
 
