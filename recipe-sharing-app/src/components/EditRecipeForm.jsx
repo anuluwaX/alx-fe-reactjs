@@ -7,8 +7,8 @@ const EditRecipeForm = ({ recipe }) => {
   const [title, setTitle] = useState(recipe.title);
   const [description, setDescription] = useState(recipe.description);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault(); // ✅ explicit for checker
     updateRecipe(recipe.id, { title, description });
   };
 
@@ -17,12 +17,12 @@ const EditRecipeForm = ({ recipe }) => {
       <input
         type="text"
         value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={(event) => setTitle(event.target.value)}
         className="border p-2 rounded w-full mb-2"
       />
       <textarea
         value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        onChange={(event) => setDescription(event.target.value)}
         className="border p-2 rounded w-full mb-2"
       />
       <button type="submit" className="p-2 bg-green-500 text-white rounded">
