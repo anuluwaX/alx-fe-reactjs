@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { create } from "zustand";
 
-// A custom hook for managing recipes
-export function useRecipeStore(initialRecipes = []) {
-  const [recipes, setRecipes] = useState(initialRecipes);
+// Zustand store for managing recipes
+const useRecipeStore = create((set) => ({
+  recipes: [],
+  addRecipe: (recipe) =>
+    set((state) => ({
+      recipes: [...state.recipes, recipe],
+    })),
+}));
 
-  const addRecipe = (recipe) => {
-    setRecipes([...recipes, recipe]);
-  };
-
-  return { recipes, addRecipe };
-}
+export default useRecipeStore;

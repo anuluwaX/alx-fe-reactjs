@@ -1,10 +1,11 @@
 import React from "react";
 import AddRecipeForm from "./components/AddRecipeForm";
 import RecipeList from "./components/RecipeList";
-import { useRecipeStore } from "./components/recipeStore";
+import useRecipeStore from "./components/recipeStore";
 
 function App() {
-  const { recipes, addRecipe } = useRecipeStore([]);
+  const recipes = useRecipeStore((state) => state.recipes);
+  const addRecipe = useRecipeStore((state) => state.addRecipe);
 
   return (
     <div className="App p-4">
